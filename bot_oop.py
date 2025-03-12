@@ -30,10 +30,9 @@ class Name(Field):
 class Phone(Field):
     """Клас для зберігання телефонного номера"""
     def __init__(self, phone):
-        
-        if len(phone) == 12:
-            self.value = "+" + phone
-        elif len(phone) == 10:
+        if not phone.isdigit():
+            raise ValueError("Phone number must contain only digits") 
+        if len(phone) == 10:
             self.value = "+38" + phone
         else:
             raise ValueError("Invalid phone number length")
